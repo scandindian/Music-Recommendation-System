@@ -12,7 +12,6 @@ import javax.swing.ListCellRenderer;
 
 import core.Artist;
 
-
 public class ArtistListCellRenderer implements ListCellRenderer {
 	private JPanel panel;
 	private JLabel label;
@@ -35,7 +34,6 @@ public class ArtistListCellRenderer implements ListCellRenderer {
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
 			boolean CellHasFocus) {
-
 		Artist artist = (Artist) value;
 		Color hover = new Color(246, 36, 89);
 		Color normal = new Color(155, 89, 182);
