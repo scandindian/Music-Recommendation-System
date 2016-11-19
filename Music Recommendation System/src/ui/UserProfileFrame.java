@@ -32,8 +32,11 @@ public class UserProfileFrame extends JFrame {
 	private JScrollPane rSongScrollPane, rArtistScrollPane, lSongScrollPane, lArtistScrollPane, aSongScrollPane,
 			aArtistScrollPane;
 	private JList rSongList, rArtistList, lSongList, lArtistList, aSongList, aArtistList;
-	private JButton likeSongButton, refreshSongsButton, likeArtistButton, refreshArtistsButton;
-	DefaultListModel rSongListModel, rArtistListModel, lSongListModel, lArtistListModel, aSongListModel,
+	private JButton rLikeSongButton, rRefreshSongsButton, rlikeArtistButton, rRefreshArtistsButton;
+	private JButton lRefreshSongsButton, lRefreshArtistsButton;
+	private JButton aLikeSongButton, alikeArtistButton;
+
+	private DefaultListModel rSongListModel, rArtistListModel, lSongListModel, lArtistListModel, aSongListModel,
 			aArtistListModel;
 
 	public UserProfileFrame(User user, MainController mainController) {
@@ -52,9 +55,9 @@ public class UserProfileFrame extends JFrame {
 		rSongList = new JList(rSongListModel);
 		rSongList.setCellRenderer(new SongListCellRenderer(rSongList));
 		rSongScrollPane = new JScrollPane(rSongList);
-		refreshSongsButton = new JButton("Refresh");
-		likeSongButton = new JButton("Like");
-		refreshSongsButton.addActionListener(new ActionListener() {
+		rRefreshSongsButton = new JButton("Refresh");
+		rLikeSongButton = new JButton("Like");
+		rRefreshSongsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -65,7 +68,7 @@ public class UserProfileFrame extends JFrame {
 				}
 			}
 		});
-		likeSongButton.addActionListener(new ActionListener() {
+		rLikeSongButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -77,8 +80,8 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(rSongScrollPane, BorderLayout.CENTER);
-		panel.add(likeSongButton, BorderLayout.NORTH);
-		panel.add(refreshSongsButton, BorderLayout.AFTER_LAST_LINE);
+		panel.add(rLikeSongButton, BorderLayout.NORTH);
+		panel.add(rRefreshSongsButton, BorderLayout.AFTER_LAST_LINE);
 		try {
 			refreshRecommendedSongList();
 		} catch (SQLException | IOException e1) {
@@ -94,9 +97,9 @@ public class UserProfileFrame extends JFrame {
 		rArtistList.setCellRenderer(new ArtistListCellRenderer(rArtistList));
 		rArtistScrollPane.setViewportView(rArtistList);
 
-		refreshArtistsButton = new JButton("Refresh");
-		likeArtistButton = new JButton("Like");
-		refreshArtistsButton.addActionListener(new ActionListener() {
+		rRefreshArtistsButton = new JButton("Refresh");
+		rlikeArtistButton = new JButton("Like");
+		rRefreshArtistsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -106,7 +109,7 @@ public class UserProfileFrame extends JFrame {
 				}
 			}
 		});
-		likeArtistButton.addActionListener(new ActionListener() {
+		rlikeArtistButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -118,8 +121,8 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(rArtistScrollPane, BorderLayout.CENTER);
-		panel.add(likeArtistButton, BorderLayout.NORTH);
-		panel.add(refreshArtistsButton, BorderLayout.AFTER_LAST_LINE);
+		panel.add(rlikeArtistButton, BorderLayout.NORTH);
+		panel.add(rRefreshArtistsButton, BorderLayout.AFTER_LAST_LINE);
 		try {
 			refreshRecommendedArtistList();
 		} catch (SQLException | IOException e1) {
@@ -142,8 +145,8 @@ public class UserProfileFrame extends JFrame {
 			e2.printStackTrace();
 		}
 
-		likeSongButton = new JButton("Like");
-		likeSongButton.addActionListener(new ActionListener() {
+		aLikeSongButton = new JButton("Like");
+		aLikeSongButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -154,7 +157,7 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(aSongScrollPane, BorderLayout.CENTER);
-		panel.add(likeSongButton, BorderLayout.NORTH);
+		panel.add(aLikeSongButton, BorderLayout.NORTH);
 	}
 
 	private void displayAllArtists(JPanel panel) {
@@ -171,8 +174,8 @@ public class UserProfileFrame extends JFrame {
 			e2.printStackTrace();
 		}
 
-		likeArtistButton = new JButton("Like");
-		likeArtistButton.addActionListener(new ActionListener() {
+		alikeArtistButton = new JButton("Like");
+		alikeArtistButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -183,7 +186,7 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(aArtistScrollPane, BorderLayout.CENTER);
-		panel.add(likeArtistButton, BorderLayout.NORTH);
+		panel.add(alikeArtistButton, BorderLayout.NORTH);
 	}
 
 	private void displayLikedSongs(JPanel panel) {
@@ -191,8 +194,8 @@ public class UserProfileFrame extends JFrame {
 		lSongList = new JList(lSongListModel);
 		lSongList.setCellRenderer(new SongListCellRenderer(lSongList));
 		lSongScrollPane = new JScrollPane(lSongList);
-		refreshSongsButton = new JButton("Refresh");
-		refreshSongsButton.addActionListener(new ActionListener() {
+		lRefreshSongsButton = new JButton("Refresh");
+		lRefreshSongsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -203,7 +206,7 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(lSongScrollPane, BorderLayout.CENTER);
-		panel.add(refreshSongsButton, BorderLayout.AFTER_LAST_LINE);
+		panel.add(lRefreshSongsButton, BorderLayout.AFTER_LAST_LINE);
 		try {
 			refreshLikedSongList();
 		} catch (SQLException | IOException e1) {
@@ -218,8 +221,8 @@ public class UserProfileFrame extends JFrame {
 		lArtistList.setCellRenderer(new ArtistListCellRenderer(lArtistList));
 		lArtistScrollPane.setViewportView(lArtistList);
 
-		refreshArtistsButton = new JButton("Refresh");
-		refreshArtistsButton.addActionListener(new ActionListener() {
+		lRefreshArtistsButton = new JButton("Refresh");
+		lRefreshArtistsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -230,7 +233,7 @@ public class UserProfileFrame extends JFrame {
 			}
 		});
 		panel.add(lArtistScrollPane, BorderLayout.CENTER);
-		panel.add(refreshArtistsButton, BorderLayout.AFTER_LAST_LINE);
+		panel.add(lRefreshArtistsButton, BorderLayout.AFTER_LAST_LINE);
 		try {
 			refreshLikedArtistList();
 		} catch (SQLException | IOException e1) {
@@ -277,12 +280,12 @@ public class UserProfileFrame extends JFrame {
 		likedSongPane.setLayout(new BorderLayout());
 		likedSongPane.setBackground(new Color(102, 51, 153));
 		displayLikedSongs(likedSongPane);
-		
+
 		likedArtistPane = new JPanel();
 		likedArtistPane.setLayout(new BorderLayout());
 		likedArtistPane.setBackground(new Color(102, 51, 153));
 		displayLikedArtists(likedArtistPane);
-		
+
 		ImageIcon icon = new ImageIcon("images/a.png");
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabbedPane.addTab("Recommended Songs", icon, recommendedSongPane, "Does nothing");
